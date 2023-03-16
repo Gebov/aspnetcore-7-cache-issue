@@ -8,7 +8,7 @@ class CustomCachePolicy : IOutputCachePolicy
 
         context.AllowCacheLookup = true;
         context.AllowCacheStorage = true;
-        context.AllowLocking = true;
+        context.AllowLocking = true; // context.AllowLocking = false;
         context.EnableOutputCaching = true;
         context.ResponseExpirationTimeSpan = TimeSpan.FromMinutes(10);
         return ValueTask.CompletedTask;
@@ -21,6 +21,7 @@ class CustomCachePolicy : IOutputCachePolicy
 
     public ValueTask ServeResponseAsync(OutputCacheContext context, CancellationToken cancellation)
     {
+        context.AllowCacheStorage = false;
         return ValueTask.CompletedTask;
     }
 }

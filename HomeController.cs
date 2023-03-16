@@ -7,7 +7,6 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var ocFeature = this.HttpContext.Features.Get<IOutputCacheFeature>();
-
         if (ocFeature != null)
         {
             ocFeature.Context.CacheVaryByRules.QueryKeys = new Microsoft.Extensions.Primitives.StringValues("page");
